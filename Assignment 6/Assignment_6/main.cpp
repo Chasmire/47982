@@ -24,6 +24,9 @@ void problem4();
 void problem5();
 void problem6();
 void problem7();
+void prntBrd_10(char []);
+void play_10();
+bool isWon_10(char []);
 void print_19(int []);
 void input_19(int []);
 bool check_19(int [],int []);
@@ -56,7 +59,7 @@ void Menu(){
     cout<<"Type 3 for problem 4"<<endl;
     cout<<"Type 4 for problem 5"<<endl;
     cout<<"Type 5 for problem 6"<<endl;
-    cout<<"Type 6 for problem 9"<<endl;
+    cout<<"Type 6 for problem 10"<<endl;
     cout<<"Type 7 for problem 19"<<endl;
     cout<<"Type anything else to exit"<<endl;
 }
@@ -97,8 +100,15 @@ void problem5(){
 }
 
 void problem6(){
-    cout<<"In problem # 9"<<endl;
+    cout<<"In problem # 10"<<endl;
     cout<<"--------------"<<endl<<endl;
+    
+    //Instructions
+    cout<<"This is a tic-tac-toe game for 2 players."<<endl;
+    cout<<"Player 1 is X and player 2 is O."<<endl;
+    cout<<"Enter the # of space to place your symbol when it is your turn."<<endl<<endl;
+    //Begin game
+    play_10();
 
 }
 
@@ -136,6 +146,64 @@ void def(int inN){
 //---------------------------------------------------------------------------//
 //                         FUNCTIONS FOR PROBLEMS                            //
 //---------------------------------------------------------------------------//
+
+// #10
+//-----------------------------------------------------------------------------
+void prntBrd_10(char board[]){
+    int count=0;
+    //Output array 
+    for(int i=0;i<9;i++){
+        count++;
+        cout<<board[i]<<" ";
+        if(count==3){
+            cout<<endl;
+            count=0;
+        }
+    }
+    cout<<endl;
+}
+
+void play_10(){
+    //Declare Variables
+    const int SIZE=9;
+    char board[SIZE]={'1','2','3','4','5','6','7','8','9'};
+    char p1,p2;
+    //Output the board
+    prntBrd_10(board);
+    do{
+        //prompt Player 1 move
+        cout<<"P -1- move: ";
+        cin>>p1;
+        cout<<endl;
+        //copy player 1 move onto the board
+        for(int i=0;i<9;i++){
+            if(p1==board[i]) board[i]='X';
+        }
+        //Output the board
+        prntBrd_10(board);
+        //Check to see if the board is full
+        if(isWon_10(board))break;
+        //prompt Player 2 move
+        cout<<"P -2- move: ";
+        cin>>p2;
+        cout<<endl;
+        //copy player 2 move onto the board
+        for(int i=0;i<9;i++){
+            if(p2==board[i]) board[i]='O';
+        }
+        //Output the board
+        prntBrd_10(board);
+    //Check to see if the board is full
+    }while(!isWon_10(board));
+}
+
+bool isWon_10(char board[]){
+    //Check if all player moves occupy the whole board
+    for(int i=0;i<9;i++){
+        if(board[i]!='X'&&board[i]!='O')return false;
+    } 
+    return true;
+}
 
 // #19
 //-----------------------------------------------------------------------------
