@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include <iomanip>
 using namespace std;
 
 //Global Constants
@@ -26,6 +27,7 @@ void problem6();
 void problem7();
 void addHex_2(char []);
 void dltRpt_3(char [],int &);
+void sort_6(int [],int);
 void prntBrd_10(char []);
 void play_10();
 bool isWon_10(char []);
@@ -63,7 +65,7 @@ void Menu(){
     cout<<"Type 1 for problem 2"<<endl;
     cout<<"Type 2 for problem 3"<<endl;
     cout<<"Type 3 for problem -"<<endl;
-    cout<<"Type 4 for problem -"<<endl;
+    cout<<"Type 4 for problem 6"<<endl;
     cout<<"Type 5 for problem 10"<<endl;
     cout<<"Type 6 for problem 11"<<endl;
     cout<<"Type 7 for problem 19"<<endl;
@@ -79,7 +81,7 @@ void problem1(){
     cout<<"In problem # 2"<<endl;
     cout<<"--------------"<<endl<<endl;
     
-	    //Declare Variables
+    //Declare Variables
     const int SIZE=22;
     char hex[SIZE]={};
     
@@ -124,15 +126,35 @@ void problem2(){
 }
 
 void problem3(){
-    cout<<"In problem # 4"<<endl;
+    cout<<"In problem # -"<<endl;
     cout<<"--------------"<<endl<<endl;
-
+	//Problem 5 Here
 }
 
 void problem4(){
-        cout<<"In problem # 5"<<endl;
+        cout<<"In problem # -"<<endl;
         cout<<"--------------"<<endl<<endl;
-        
+		
+    //Declare Variables
+    const int SIZE=10;
+    int sorted[SIZE],notSort[SIZE]={8,6,10,2,16,4,18,14,12,10};
+    int cnt=0;
+    
+    cout<<"Sorting An Array"<<endl;
+    for(int i=0;i<SIZE;i++){ //Copy original array to a new one
+        sorted[i]=notSort[i];
+        cnt++; //Keeps track of size of new array
+        for(int n=0;n<cnt;n++){
+            sort_6(sorted,cnt); //Sort the new array using size(cnt) of new array 
+        }     
+    }  
+    //Output results
+    cout<<" Before   After"<<endl;
+    for(int i=0;i<SIZE;i++){
+        cout<<setw(5)<<notSort[i];
+        cout<<setw(8)<<sorted[i]<<endl;
+    }
+    cout<<endl;
 }
 
 void problem5(){
@@ -261,6 +283,21 @@ void dltRpt_3(char a[],int& size){
         }
     }
     size=size2;   //copy the new array size to the old
+}
+
+// #6
+//-----------------------------------------------------------------------------
+void sort_6(int a[],int size){
+    //Declare Variables
+    int temp;
+    //sort the array smallest to largest by swapping elements
+    for(int i=1;i<size;i++){
+        if(a[i]<a[i-1]){
+            temp=a[i];
+            a[i]=a[i-1];
+            a[i-1]=temp;  
+        }
+    }
 }
 
 // #10
